@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UserInfo</title>
+
+    <style type="text/css">
+        .Content-Main{
+            max-width: 60%;
+            height:400px;
+            margin:0 auto;
+             margin-top: 100px;
+            border: none;
+            border-radius: 5px;
+            flex-direction: column;
+        	align-items: center;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            //font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+            //text-shadow: 1px 1px 1px #444;
+            //color: #D3D3D3;
+            //background: #555;
+            //background:#f7fcfc;
+            font-family: Microsoft YaHei,"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+
+
+        }
+        .Content-Main h1{
+            padding: 8px 0px 40px 10px;
+            display: block;
+            //border-bottom: 1px solid #444;
+
+        }
+        h1{
+            text-align: center;
+            }
+        .text1{
+            position:relative;
+            margin-left: 3px;
+            text-align:center;
+            left:600px;
+        }
+        .Content-Main label{
+            margin: 0px 0px 5px;
+            display: block;
+        }
+        .fileInputContainer{
+            height: 99px;
+            width: 99px;
+            margin: 20px 20px 20px 20px ;
+            border: none;
+            background: url("https://tupian.qqw21.com/article/UploadPic/2021-5/20215282025121908.jpg");
+            overflow: hidden;
+            position: relative;
+            left:600px;
+        }
+        .fileInput{
+            height: 106px;
+            border: none;
+            font-size: 300px;
+            opacity: 0;
+            filter:alpha(opacity=0);
+            cursor: pointer;
+            position: absolute;
+        }
+        .Content-Main label>span{
+            width: 20%;
+            float: left;
+            text-align: right;
+            padding-right: 10px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .Main-sex{
+            padding-right: 13px;
+            padding-bottom: 13px;
+            font-weight: bold;
+            line-height: 4px;
+        }
+        .Main-sex input[type=checkbox]{
+            margin-top:6px;
+            vertical-align:middle;
+        }
+        .Content-Main input[type="text"],.Content-Main input[type="activity"],.Content-Main textarea{
+            height: 25px;
+            width: 50%;
+            line-height: 15px;
+            padding: 5px 0px 5px 5px;
+            margin-bottom: 16px;
+            margin-right: 6px;
+            margin-top: 2px;
+            border:none;
+            border-radius:2px;
+            -webkit-border-radius:2px;
+            -moz-border-radius:2px;
+            outline: 0 none;
+           // background:  #DFDFDF;
+            color: #525252;
+
+        }
+        .Content-Main textarea{
+            height: 100px;
+            width: 70%;
+            padding: 5px 0px 0px 5px;
+        }
+        .Content-Main .button{
+            padding: 8px 24px 8px 24px;
+            margin-bottom: 8px;
+            border: none;
+            border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px #FFE477;
+            box-shadow: 1px 1px 1px  #3D3D3D;
+            -moz-box-shadow: 1px 1px 1px  #3D3D3D;
+            -webkit-box-shadow: 1px 1px 1px  #3D3D3D;
+            color: #585858;
+            background: #60bfffba;
+            position:relative;
+            left:350px;
+            top:45px;
+            align-self:center;
+            font-family: Microsoft YaHei,"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+
+
+
+        }
+        .Content-Main .button:hover{
+            color:  #333;
+            background-color:  #0099ff ;
+        }
+    </style>
+</head>
+<body style="background-image:url(../img/form.jpg);height:100%;width:100%;">
+<div class="Content-Main">
+    <div class="container">
+        <a style="margin-top:0px;
+    margin-bottom: 0;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 38px;
+color:black;" onclick="backBefore()" >&lt</a>
+
+    </div>
+
+    <form  action="/user/attendPro" method="post" class="form-userInfo">
+        <h1> 报名信息</h1>
+        <p>
+            <!--<div class="fileInputContainer">
+                <input class="fileInput" id="photo" type="file" name="">
+            </div>-->
+            <label>
+                <span>名字:</span>
+                <input type="text" id="name" name="username" onfocus="YHMonfocu()" onblur="YHMonblus()" placeholder="请输入你的名字">
+            </label>
+
+            <label>
+                <span>赛事名称:</span>
+                <input type="text" id="activity" name="activity" onfocus="SSMonfocu()" onblur="SSMonblus()" placeholder="请输入赛事名称">
+            </label>
+
+            <!-- <label>
+                 <span>Message:</span>
+                 <textarea id="message" name="message" placeholder="Your message to us"></textarea>
+             </label>-->
+            <label>
+                <input  class="button" value="报&nbsp;&nbsp;名" type="submit">
+            </label>
+
+    </form>
+
+</div>
+</body>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script>
+        var usernameflag;
+        var gnameflag;
+
+        function usernameIsExist(){
+             var username=document.getElementById("name").value;
+              if(username==""){
+                usernameflag=false;
+              }else{
+                $.ajax({
+                      url:"/user/attend/usernameIsCurrentUser/"+username,
+                      type:"get",
+                      contentType:"application/json;charset=utf-8",
+                      async:false,
+                      success:function(data){
+                           usernameflag=data;
+                           console.log("username"+usernameflag);
+                       }
+                     })
+              }
+        }
+
+
+         function YHMonblus(){
+            usernameIsExist();
+            if(usernameflag){
+
+             }else{
+                 document.getElementById('name').value="用户名与当前用户不符";
+             }
+
+         }
+
+          function YHMonfocu(){
+            document.getElementById('name').value ="";
+          }
+
+
+
+
+          function gnameIsExist(){
+             var gname=document.getElementById("activity").value;
+             if(gname==""){
+                gnameflag=false;
+              }else{
+                $.ajax({
+                      url:"/user/gnameIsExist/"+gname,
+                      type:"get",
+                      contentType:"application/json;charset=utf-8",
+                      async:false,
+                      success:function(data){
+                           gnameflag=data;
+                           console.log("gname"+gnameflag);
+                       }
+                     })
+             }
+          }
+
+
+         function SSMonblus(){
+            gnameIsExist();
+            if(gnameflag){
+
+             }else{
+                document.getElementById('activity').value="赛事不存在";
+             }
+         }
+
+          function SSMonfocu(){
+            document.getElementById('activity').value ="";
+          }
+        function backBefore(){
+            window.history.go(-1);
+        }
+
+
+
+
+
+
+</script>
+<style>
+      .jumbotron {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #fff;
+    margin-bottom:10px;
+}
+
+    .site-header-topbar1 {
+    position: absolute;
+    left: 0;
+    top: -60px;
+    right: 0;
+    z-index: 10;
+    padding: 10px 0;
+}
+ #site-header-brand, #site-header-brand .octicon {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 38px;
+        font-weight: 400;
+        line-height: 38px;
+        padding-left: 460px;
+}
+</style>
+</html>

@@ -1,0 +1,150 @@
+body{
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        background-image: linear-gradient(#a18cd1 0%, #fbc2eb 100%);
+        background-size: cover;
+        flex: 1;
+
+
+    }
+
+.img{
+    position:relative;
+    display:inline-block;
+    width:45.0909px;
+    height:45.0909px;
+
+}
+
+.div1{
+    display:block;
+    flex-direction:row;
+    flex-wrap:wrap;
+}
+
+
+
+.img1{
+    position:relative;
+
+    height:100px;
+    width:100%;
+
+}
+
+.user{
+    position:relative;
+    display:inline-block;
+     top:-20px
+
+}
+
+
+.ant-tabs-nav-wrap {
+    margin-bottom: -1px;
+    overflow: hidden
+}
+
+.ant-tabs-nav-scroll {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ant-tabs-nav {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    transition: transform .3s cubic-bezier(.645, .045, .355, 1);
+}
+
+.ant-tabs-nav .ant-tabs-tab {
+    position: relative;
+   // position: left;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0 32px 0 0;
+    padding: 12px 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color .3s cubic-bezier(.645,.045,.355,1);
+}
+
+.ant-tabs-nav .ant-tabs-tab:last-child {
+    margin-right: 0;
+}
+.ant-tabs-nav .ant-tabs-tab-active {
+    color: #0080cc;
+    font-weight: 500;
+}
+.ant-tabs-nav .ant-tabs-tab {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0 32px 0 0;
+    padding: 12px 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color .3s cubic-bezier(.645,.045,.355,1);
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+用户代理样式表
+div {
+    display: block;
+}
+.ant-tabs-nav {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    transition: transform .3s cubic-bezier(.645,.045,.355,1);
+}
+
+.ant-tabs-nav-scroll {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.tabs-active1-style {
+    display: block;
+    transform: translate3d(0px, 0px, 0px);
+    width: 96px !important;
+}
+
+.tabs-active2-style {
+    display: block;
+    transform: translate3d(144px, 0px, 0px);
+    width: 96px !important;
+}
+.tabs-active3-style {
+    display: block;
+    transform: translate3d(288px, 0px, 0px);
+    width: 96px !important;
+}
+
+.ant-tabs-ink-bar-animated {
+    transition: transform .3s cubic-bezier(.645,.045,.355,1),width .2s cubic-bezier(.645,.045,.355,1),left .3s cubic-bezier(.645,.045,.355,1);
+}
+
+.ant-tabs-ink-bar {
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 0;
+    height: 2px;
+    background-color: #0080cc;
+    transform-origin: 0 0;
+}

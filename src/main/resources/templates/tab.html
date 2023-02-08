@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+
+    <h1>Tabs</h1>
+    <nav>
+        <ul>
+            <li><a href="this.html">This</a></li>
+            <li id="selected"><a href="that.html">That</a></li>
+            <li><a href="theOther.html">The Other</a></li>
+            <li><a href="banana.html">Banana</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<section id="content">
+    <p><!-- Big lovely oodles of content --></p>
+</section>
+<style>
+
+body{
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        //display: flex;
+        background-image: linear-gradient(#a18cd1 0%, #00ffff 100%);
+       // background-image: linear-gradient(#00ffff 0%, #a18cd1 100%);
+        background-size: cover;
+
+
+    }
+
+    nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    display: inline;
+    border: solid;
+    border-width: 1px 1px 0 1px;
+    margin: 0 5px 0 0;
+}
+
+nav li a {
+    padding: 0 10px;
+}
+
+#content {
+    border: 1px solid;
+}
+
+#selected {
+    padding-bottom: 1px;
+    background: white;
+}
+</style>
+</body>
+</html>

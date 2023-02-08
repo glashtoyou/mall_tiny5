@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>CSS3外观漂亮淡入淡出Tab菜单演示</title>
+
+    <link rel="stylesheet" href="css/style1.css" media="screen" type="text/css"/>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+</head>
+
+<body>
+<div >
+    <div >
+        <div class="ant-tabs-nav ant-tabs-nav-animated">
+            <div>
+                <div role="tab" aria-disabled="false"  data-index="0" class="ant-tabs-tab-active ant-tabs-tab">
+                    一线监控
+                </div>
+                <div role="tab" aria-disabled="false"  data-index="1" class=" ant-tabs-tab">
+                    二线监控
+                </div>
+
+                <div role="tab" aria-disabled="false"  data-index="2" class=" ant-tabs-tab">
+                    归档监控
+                </div>
+                <div role="tab" aria-disabled="false"  data-index="3" class=" ant-tabs-tab">
+                    归档监控
+                </div>
+            <div id="article" class="ant-tabs-ink-bar ant-tabs-ink-bar-animated tabs-active1-style"></div>
+            </div>    
+        </div>
+    </div>
+</div>
+<div>
+    <img src="img/user.png" alt="Paris" class="img">
+    <p class="user" >user</p>
+</div>
+<div class="div1">
+    <img src="img/user.png" alt="Paris" class="img">
+</div>
+
+</body>
+<script>
+    let $article = $('#article');
+    $('.ant-tabs-tab').on('click', function () {
+        //删除选中的样式
+        $('.ant-tabs-tab').removeClass("ant-tabs-tab-active")
+        //线条移动
+        $article.css({
+            "transform": "translate3d("+$(this).attr('data-index')*132+"px, 0px, 0px)"
+        });
+        //选中tab样式
+        this.classList.add("ant-tabs-tab-active")
+    });
+    $('.user').on('click',function (){
+
+        })
+    $('img').on('click',function (){
+
+        })
+</script>
+
+</html>

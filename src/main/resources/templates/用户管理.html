@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <!-- 为了确保适当的绘制和触屏缩放，需要在 <head> 之中添加 viewport 元数据标签。 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>人员信息管理系统</title>
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="canonical" href="http://www.ityouknow.com/">
+  <link rel="alternate" type="application/rss+xml" title="纯洁的微笑" href="http://www.ityouknow.com/feed.xml">
+
+  <!-- Third-Party CSS -->
+  <link rel="stylesheet" href="http://favorites.ren/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://www.ityouknow.com/bower_components/octicons/octicons/octicons.css">
+  <link rel="stylesheet" href="http://favorites.ren/bower_components/hover/css/hover-min.css">
+  <link rel="stylesheet" href="http://favorites.ren/bower_components/primer-markdown/dist/user-content.min.css">
+  <link rel="stylesheet" href="http://favorites.ren/assets/css/syntax.css">
+  <link rel="stylesheet" href="http://favorites.ren/assets/css/gitalk.css">
+
+
+
+  <!-- My CSS -->
+  <link rel="stylesheet" href="http://favorites.ren/assets/css/common.css">
+
+  <!-- CSS set in page -->
+
+  <link rel="stylesheet" href="http://favorites.ren/assets/css/index.css">
+
+  <link rel="stylesheet" href="http://favorites.ren/assets/css/sidebar-popular-repo.css">
+
+
+  <!-- CSS set in layout -->
+
+
+  <link href="http://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <script type="text/javascript" src="http://favorites.ren/bower_components/jquery/dist/jquery.min.js"></script>
+
+
+</head>
+<body>
+<section class="jumbotron">
+  <div class="container">
+    <a id="site-header-brand" href="/" title="纯洁的微笑">
+      &lt 个人历史记录
+    </a>
+  </div>
+
+</section>
+<div id="" style="margin: 1.25rem;">
+  <button type="button" class="btn btn-info" onclick="showPerson()"><span class="glyphicon glyphicon-qrcode"></span> 显示人员信息</button>
+  <button type="button" class="btn btn-info" onclick="showAddPerson()"><span class="glyphicon glyphicon-sound-stereo"></span> 新增人员信息</button>
+</div>
+
+<!-- 表格信息 -->
+<div id="div1" style="margin: 1.25rem;">
+  <table border="1" class="table table-hover" style="display: none;" id="table1" cellspacing="2" cellpadding="2">
+    <!-- <tr> <th>编号</th><th>姓名</th><th>性别</th><th>年龄</th><th>籍贯</th><th colspan="2">操作</th> </tr>
+        <tr> <td>v.编号</td><td>v.姓名</td><td>v.性别</td><td>v.年龄</td><td>v.籍贯</td><td><button type="button" onclick="">删除</button></td><td><button type="button">更新</button></td> </tr>
+     --></table>
+</div>
+<!-- 新增人员信息 -->
+<div id="div2" style="display: none;margin: 1.25rem;">
+  <fieldset id="field2">
+    <legend>新增人员信息</legend>
+    <table class="table table-hover">
+      <input type="hidden"  class="form-control" name="id" id="uid"/>
+      <tr>
+        <td>姓名:</td>
+        <td><input type="text" class="form-control" name="name" id="name" value="艾佛森" /></td>
+      </tr>
+      <tr>
+        <td>密码：</td>
+        <td><input type="number" class="form-control"  name="old" id="old" value="44" /></td>
+      </tr>
+      <tr>
+        <td>性别：</td>
+        <td>
+          <select id="sex" class="form-control"  required="required">
+            <option value ="">--请选择--</option>
+            <option value ="男" selected="selected">男</option>
+            <option value ="女">女</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>籍贯：</td>
+        <td><input type="text" class="form-control"  name="area" id="area" value="弗吉尼亚州汉普顿" /></td>
+      </tr>
+      <tr>
+      </tr>
+      <tr>
+        <td>拥有身份:</td>
+        <td><input type="text" class="form-control"  name="area" id="identity" value="弗吉尼亚州汉普顿" /></td>
+      </tr>
+      <tr>
+        <td><button type="button" class="btn btn-primary" onclick="addPerson()">确定</button><button type="button" class="btn btn-warning" onclick="cancel()">取消</button></td>
+      </tr>
+    </table>
+  </fieldset>
+</div>
+<!-- 更新人员信息 -->
+<div id="div3" style="display: none;margin: 1.25rem;" name="div3">
+  <fieldset id="field3">
+    <legend>更新人员信息</legend>
+    <table class="table table-hover">
+      <tr>
+        <td>姓名：</td>
+        <td><input type="text" class="form-control"  name="name" id="uname"/></td>
+      </tr>
+      <tr>
+        <td>年龄：</td>
+        <td><input type="number"  class="form-control" name="old" id="uold"/></td>
+      </tr>
+      <tr>
+        <td>性别：</td>
+        <td>
+          <select id="usex" class="form-control"  required="required">
+            <option value ="">--请选择--</option>
+            <option value ="男" >男</option>
+            <option value ="女">女</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>籍贯：</td>
+        <td><input type="text" class="form-control"  name="area" id="uarea" /></td>
+      </tr>
+      <tr>
+        <td><button type="button" class="btn btn-success" onclick="updatePerson()">确定</button><button type="button" class="btn btn-warning" onclick="cancel()">取消</button></td>
+      </tr>
+    </table>
+  </fieldset>
+</div>
+</body>
+<script type="text/javascript">
+			var index = 1;
+			var p1 = {
+				"id":index,
+				"name":"科比",
+				"sex":"男",
+				"old":41,
+				"area":"美国洛杉矶",
+			};
+			index++;
+			var p2 = {
+				"id":index,
+				"name":"乔丹",
+				"sex":"男",
+				"old":56,
+				"area":"美国纽约",
+			};
+			index++;
+			var p = new Array();//var p = [];
+			p.push(p1);
+			p.push(p2);
+			/**显示人员信息**/
+			function showPerson(){
+				//显示表格
+				var table1 = document.getElementById("table1");
+				table1.style = "margin: 1.25rem;";
+				var str = "<tr> <th>编号</th><th>姓名</th><th>性别</th><th>年龄</th><th>籍贯</th><th>操作</th> </tr>";
+				for(var i=0;i<p.length;i++){
+					var a = p[i];
+					str += "<tr> <td>"+a.id+"</td><td>"+a.name+"</td><td>"+a.sex+"</td><td>"+a.old+"</td><td>"+a.area+"</td><td><button type='button' class='btn btn-success' onclick='showUpdatePerson("+a.id+")'>更新</button> &nbsp;&nbsp;   <button type='button' class='btn btn-danger' onclick='deletePerson("+a.id+")'>删除</button>  </td> </tr>";
+				}
+				table1.innerHTML = str;
+			}
+			/**显示新增人员信息**/
+			function showAddPerson(){
+				//隐藏更新人员界面
+				var div3 = document.getElementById("div3");
+				div3.style = "display: none;";
+				var div2 = document.getElementById("div2");
+				div2.style = "margin: 2.25rem;";
+			}
+			/**新增人员信息**/
+			function addPerson(){
+				var field2 = document.getElementById("field2");
+				var a = {};//var a = new Array();
+				// var a = p[index-1];
+				a.id = index;
+				a.name = document.getElementById("name").value;
+				a.old = document.getElementById("old").value;
+				a.sex = document.getElementById("sex").value;
+				a.area = document.getElementById("area").value;
+				// alert(a.id+" "+a.name+" "+a.old+" "+a.sex+" "+a.area +" ");
+				index++;
+				//数组添加表单的值
+				p.push(a);
+				//添加之后重新查询表单
+				showPerson();
+
+			}
+			/**取消按钮，隐藏表单**/
+			function cancel(){
+				//隐藏新增人员信息界面
+				var div2 = document.getElementById("div2");
+				div2.style = "display: none;";
+				//隐藏更新人员信息界面
+				var div3 = document.getElementById("div3");
+				div3.style = "display: none;";
+			}
+			/**根据id删除人员信息**/
+			function deletePerson(id){
+				var flag = confirm("确定删除？");
+				if(flag){
+					for(var i=0;i<p.length;i++){
+						var a = p[i];
+						if(a.id == id){
+							p.splice(i,1);//从第i个位置开始删除一个元素
+						}
+					}
+				}
+				//删除完毕重新加载表单
+				showPerson();
+			}
+			/**根据id修改人员信息**/
+			function showUpdatePerson(id){
+				//隐藏添加人员界面
+				var div2 = document.getElementById("div2");
+				div2.style = "display: none;";
+				//显示更新人员界面
+				var div3 = document.getElementById("div3");
+				div3.style = "margin: 2.25rem";
+				//根据id遍历数组得到要修改的值,然后用document对象进行修改
+				for(var i=0;i<p.length;i++){
+					var a = p[i];
+					if(a.id == id){
+						document.getElementById("uname").value = a.name;
+						document.getElementById("uold").value = a.old;
+						document.getElementById("usex").value = a.sex;
+						document.getElementById("uarea").value = a.area;
+						document.getElementById("uid").value = a.id;
+					}
+				}
+			}
+			function updatePerson(){
+				var id = document.getElementById("uid").value;
+				//再根据id把表单中的value值存入对于的p[]i数组中
+				for(var i=0;i<p.length;i++){
+					var a = p[i];
+					if(a.id == id){
+						p[i].name = document.getElementById("uname").value;
+						p[i].old = document.getElementById("uold").value;
+						p[i].sex = document.getElementById("usex").value;
+						p[i].area = document.getElementById("uarea").value;
+					}
+				}
+				//重新调用表单刷新
+				showPerson();
+				//隐藏添加人员界面
+				var div3 = document.getElementById("div3");
+				div3.style = "display: none;";
+			}
+		</script>
+<style>
+    .jumbotron {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #fff;
+}
+#site-header-brand, #site-header-brand .octicon {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 38px;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: unset;
+}
+
+  </style>
+</html>

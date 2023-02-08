@@ -1,0 +1,65 @@
+.nav{
+			text-align: center;
+		}
+
+.Content-Main{
+                width: 100%;
+                /*flex 布局*/
+                display: flex;
+                /*实现垂直居中*/
+                align-items: center;
+                /*实现水平居中*/
+                justify-content: center;
+                flex-direction: column;
+                position: relative;
+                //background:#0099ff;
+                //background:#f5f5ff;
+                //background: #f5f5ff;
+                background-image: linear-gradient(#bbddc3 0%, #7894c1 100%);
+        }
+
+.Content-middle{
+                width: 60%;
+                /*flex 布局*/
+                display: flex;
+                /*实现垂直居中*/
+                align-items: center;
+                /*实现水平居中*/
+                justify-content: center;
+                flex-direction: column;
+                position: relative;
+                //background:#0099ff;
+                //background:#f5f5ff;
+
+        }
+
+
+.mainContent {
+           word-break: break-all;
+           padding: 10px 8px;
+           line-height: 25px;
+           font-family: '宋体';
+           color: #333;
+           overflow: hidden;
+           white-space:pre-line;
+           text-indent:2em;
+
+
+       }
+
+.button:hover{
+            color:  #333;
+            background-color:  #0099ff ;
+
+        }
+.button{
+             padding: 8px 20px 8px 20px;
+             border: none;
+             background: #60bfffba;
+             margin-top:200px;
+             //border-radius: 4px;
+             -moz-border-radius: 4px;
+             -webkit-border-radius: 4px;
+             font-family: Microsoft YaHei,"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+
+        }
