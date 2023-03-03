@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <!-- 为了确保适当的绘制和触屏缩放，需要在 <head> 之中添加 viewport 元数据标签。 -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>人员信息管理系统</title>
+  <title>校园赛事管理</title>
   <!-- 新 Bootstrap 核心 CSS 文件 -->
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="canonical" href="http://www.ityouknow.com/">
-  <link rel="alternate" type="application/rss+xml" title="纯洁的微笑" href="http://www.ityouknow.com/feed.xml">
+  <link rel="alternate" type="application/rss+xml"  href="http://www.ityouknow.com/feed.xml">
 
   <!-- Third-Party CSS -->
   <link rel="stylesheet" href="http://favorites.ren/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -120,9 +120,9 @@
       </tr>
       <tr>
         <td>赛事内容:</td>
-        <td><input type="textarea" class="form-control line-limit-length " style=" word-break: break-all; overflow: hidden;
+        <td><textarea class="form-control line-limit-length " style=" word-break: break-all; overflow: hidden;
            white-space:pre-line;
-           text-indent:2em;"  name="gcontent" id="content" placeholder="请输入赛事内容" /></td>
+           text-indent:2em;"  name="gcontent" id="content" placeholder="请输入赛事内容"></textarea></td>
       </tr>
       <tr>
         <td>赛事描述:</td>
@@ -195,8 +195,11 @@
 			getListGame();
 
 			function  onSave(){
-			    alert("test");
-			    console.log(p);
+			    if(!window.confirm("是否保存")) {
+			        window.location.href="/user/index";
+			        return;
+			    }
+			    //console.log(p);
 			   // console.log(JSON.stringify(p));
 			    $.ajax({
                   url:"/admin/game_manage/receiveListGame",
@@ -234,8 +237,19 @@
 				var div2 = document.getElementById("div2");
 				div2.style = "margin: 2.25rem;";
 			}
+
+			function isAddEmpty(){
+			    var gname = document.getElementById("gname").value;
+				var gcontent= document.getElementById("gcontent").value;
+				var gdesc = document.getElementById("gdesc").value;
+				var gstart = format(document.getElementById("gstart").value);
+				var gend= format(document.getElementById("gend").value);
+				if(gname==""||gcontent==""||gdesc==""||gstart==""||gend=="") return true;
+				return false;
+			}
 			/**新增人员信息**/
 			function addGame(){
+			    if(isAddEmpty()) return;
 				var field2 = document.getElementById("field2");
 				var a = {};//var a = new Array();
 				// var a = p[index-1];
@@ -297,7 +311,19 @@
 					}
 				}
 			}
+
+			function isUpdateEmpty(){
+			    var gname = document.getElementById("name").value;
+				var gcontent= document.getElementById("content").value;
+				var gdesc = document.getElementById("desc").value;
+				var gstart = format(document.getElementById("start").value);
+				var gend= format(document.getElementById("end").value);
+				if(gname==""||gcontent==""||gdesc==""||gstart==""||gend=="") return true;
+				return false;
+			}
+
 			function updateGame(){
+			    if(isUpdateEmpty()) return;
 				var id = document.getElementById("gid").value;
 				//再根据id把表单中的value值存入对于的p[]i数组中
 				for(var i=0;i<p.length;i++){
