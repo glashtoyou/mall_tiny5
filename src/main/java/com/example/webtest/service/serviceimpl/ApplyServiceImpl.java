@@ -18,6 +18,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+@Transactional
 @Service
 public class ApplyServiceImpl implements ApplyService {
 
@@ -99,20 +100,21 @@ public class ApplyServiceImpl implements ApplyService {
     }
 
     @Override
-    public Boolean usernameIsExist(String username, Integer uid) {
+    public Boolean usernameIsExist(String username, Integer uid,Boolean isManagement) {
         QueryWrapper<User>wrapper=new QueryWrapper<>();
         wrapper.eq("uname",username);
         User user=userMapper.selectOne(wrapper);//尝试获取是否有该用户名
         if(uid==null){
             //没有登录，用户名不为空
-            return user != null;//用户不存在
+            return user != null;//用户不存在 注册用
         }////没有登录用户
+        if(isManagement==true)return  user != null;
 
        User user1=userService.getById(uid);//登录用户
-        if(user==null){
+        if(user1.equals(null)){
             return false;
         }
-        else return !user.getUsername().equals(user1.getUsername());//用户数据是当前登录用户
+        else return !user.getUsername().equals(user1.getUsername());//用户数据是当前登录用户 修改用
 
     }
 
