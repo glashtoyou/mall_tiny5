@@ -6,7 +6,9 @@ import com.example.webtest.mapper.GameMapper;
 import com.example.webtest.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Service
 public class GameServiceImpl extends ServiceImpl<GameMapper, Game> implements GameService{
 

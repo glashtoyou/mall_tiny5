@@ -5,11 +5,11 @@
   <!--<base href="http://localhost:8080/">-->
   <!-- 为了确保适当的绘制和触屏缩放，需要在 <head> 之中添加 viewport 元数据标签。 -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>人员信息管理系统</title>
+  <title>用户管理</title>
   <!-- 新 Bootstrap 核心 CSS 文件 -->
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="canonical" href="http://www.ityouknow.com/">
-  <link rel="alternate" type="application/rss+xml" title="纯洁的微笑" href="http://www.ityouknow.com/feed.xml">
+  <link rel="alternate" type="application/rss+xml"  href="http://www.ityouknow.com/feed.xml">
 
   <!-- Third-Party CSS -->
   <link rel="stylesheet" href="http://favorites.ren/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -79,12 +79,12 @@
       <input type="hidden"  class="form-control" name="id" id="uid"/>
       <tr>
         <td>姓名:</td>
-        <td><input type="text" class="form-control" name="username" id="username" onfocus="YHMonfocu()" onblur="YHMonblus(usernameIsExist)" value="Aitehai" /></td>
+        <td><input type="text" class="form-control" name="username" id="username" onfocus="YHMonfocu()" onblur="YHMonblus(usernameIsExist)" placeholder="请输入用户名" /></td>
 
       </tr>
       <tr>
         <td>密码：</td>
-        <td><input type="password"  class="form-control"  name="password" id="password" placeholder="请输入BCrypt加密6位数字后的密码" />
+        <td><input type="password"  class="form-control"  name="password" id="password" onfocus="MMonfocu()" onblur="MMonblus()" placeholder="请输入BCrypt加密6位数字后的密码" />
         <td ><img id="img" src="../../img/close.jpg" /></td>
         </td>
 
@@ -111,9 +111,9 @@
       <tr>
       </tr>
       <tr>
-        <td>是否管理员:</td>
+        <td>用户角色:</td>
         <td><input type="radio" name="role" id="role" value="ADMIN" >ADMIN
-          <input type="radio" name="role" id="role2" value="USER">USER
+          <input type="radio" name="role" id="role2" value="USER" checked >USER
         </td>    <!--<input type="text" class="form-control"  name="area" id="identity" value="USER" />-->
       </tr>
       <tr>
@@ -129,12 +129,12 @@
     <table class="table table-hover">
       <tr>
         <td>姓名:</td>
-        <td><input type="text" class="form-control" name="username" id="uname" onfocus="YHMonfocu2()" onblur="YHMonblus2(usernameIsExist2)" value="艾佛森" /></td>
+        <td><input type="text" class="form-control" name="username" id="uname" onfocus="YHMonfocu2()" onblur="YHMonblus2(usernameIsExist2)" placeholder="请输入用户名" /></td>
 
       </tr>
       <tr>
         <td>密码：</td>
-        <td><input type="password"  class="form-control"  name="password" id="upassword" placeholder="请输入BCrypt加密6位数字后的密码" value=""/>
+        <td><input type="password"  class="form-control"  name="password" id="upassword" onfocus="MMonfocu2()" onblur="MMonblus2()" placeholder="请输入BCrypt加密6位数字后的密码" />
         <td ><img id="img2" src="../../img/close.jpg" /></td>
         </td>
 
@@ -151,19 +151,19 @@
       </tr>
       <tr>
         <td>邮箱地址：</td>
-        <td><input type="text" class="form-control"  name="email" id="uemail" onfocus="DZYXonfocu2()" onblur="DZYXonblus2()" value="1234567@qq.com" /></td>
+        <td><input type="text" class="form-control"  name="email" id="uemail" onfocus="DZYXonfocu2()" onblur="DZYXonblus2()"  /></td>
       </tr>
       <tr>
       <tr>
         <td>电话号码：</td>
-        <td><input type="text" class="form-control"  name="phone" id="uphone" onfocus="LXDHonfocu2()" onblur="LXDHonblus2()" value="13356467899" /></td>
+        <td><input type="text" class="form-control"  name="phone" id="uphone" onfocus="LXDHonfocu2()" onblur="LXDHonblus2()"  /></td>
       </tr>
       <tr>
       </tr>
       <tr>
-        <td>是否管理员:</td>
+        <td>用户角色:</td>
         <td><input type="radio" name="role"  value="ADMIN" >ADMIN
-          <input type="radio" name="role"  value="USER">USER
+          <input type="radio" name="role"  value="USER" >USER
         </td>    <!--<input type="text" class="form-control"  name="area" id="identity" value="USER" />-->
       </tr>
       <tr>
@@ -189,11 +189,12 @@
                       async:false,
                       success:function(data){
                            usernameflag=data;
-                           console.log(username+usernameflag);
+                          // console.log(username+usernameflag);
                        }
                      })
               }
               return usernameflag;
+              //return nameIsExist(username);
 
         }
 
@@ -202,13 +203,16 @@
        // var reN =/^\d{6,18}$/;
         var re = /^[a-zA-Z_]{6,18}$/;
         if(username.value==""){
-            document.getElementById('username').value="请输入用户名";
+            document.getElementById('username').value="";
+            document.getElementById('username').placeholder="请输入用户名";
         }
         else if(username.value.length < 6 ||username.value.length > 18){
-            document.getElementById('username').value="格式错误,长度应为6-18个字符";
+            document.getElementById('username').value="";
+            document.getElementById('username').placeholder="格式错误,长度应为6-18个字符";
         }
         else if(!re.test(username.value)){
-            document.getElementById('username').value="格式错误,只能包含英文字母和下划线";
+            document.getElementById('username').value="";
+            document.getElementById('username').placeholder="格式错误,只能包含英文字母和下划线";
         }
         else {
             usernameflag=callback();
@@ -216,7 +220,8 @@
             //console.log("2"+usernameflag);
             if(usernameflag){
                 // console.log("3"+usernameflag);
-                 document.getElementById('username').value ="用户名已存在";
+                 document.getElementById('username').value="";
+                 document.getElementById('username').placeholder ="用户名已存在";
              }else{
 
              }
@@ -226,16 +231,19 @@
 
      function YHMonfocu(){
             document.getElementById('username').value ="";
+            document.getElementById('username').placeholder="请输入用户名";
     }
 
   function MMonblus(){
             var password=document.getElementById("password").value;
-            var re =/^[A-Za-z0-9$./]{57}$/;
+            var re=/^.{60}/;
+            //var re=/^\\$2[aby]\\$.{60}$/;
             ///^(?=.*\d)(?=.*[a-zA-Z])[\da-zA-Z]{6,}$/;
            // var reg=/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/;
 
           if(password==""||!re.test(password)){
-              document.getElementById('password').value="请输入BCrypt加密后的密码";
+              document.getElementById('password').value="";
+              document.getElementById('password').placeholder="输入密码格式不对";
               }//setAttribute("placeholder",
 
 
@@ -256,6 +264,7 @@
 
     function MMonfocu(){
         document.getElementById('password').value="";
+        document.getElementById('password').placeholder="请输入BCrypt加密6位数字后的密码";
     }
 
 
@@ -263,10 +272,12 @@
         var phone=document.getElementById("phone");
         var re =/^1[3|4|5|7|8]\d{9}$/;
         if(phone.value==""){
-            document.getElementById('phone').value="请输入联系电话";
+            document.getElementById('phone').value="";
+            document.getElementById('phone').placeholder="请输入联系电话";
         }
         else if(!re.test(phone.value)){
-            document.getElementById('phone').value="电话格式输入错误";
+            document.getElementById('phone').value="";
+            document.getElementById('phone').placeholder="电话格式输入错误";
         }
         else {
             //document.getElementById('phone').value ="";
@@ -274,16 +285,19 @@
     }
     function LXDHonfocu(){
         document.getElementById('phone').value ="";
+        document.getElementById('phone').placeholder="请输入联系电话";
     }
 
      function DZYXonblus(){
         var email=document.getElementById("email");
         var re= /[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}/;
         if(email.value==""){
-            document.getElementById('email').value="请输入电子邮箱";
+            document.getElementById('email').value="";
+            document.getElementById('email').placeholder="请输入电子邮箱";
         }
         else if(!re.test(email.value)){
-            document.getElementById("email").value="邮箱格式不正确";
+            document.getElementById('email').value="";
+            document.getElementById("email").placeholder="邮箱格式不正确";
         }
         else {
            // document.getElementById('email').value ="";
@@ -291,6 +305,7 @@
     }
     function DZYXonfocu(){
         document.getElementById('email').value ="";
+        document.getElementById('email').placeholder="请输入电子邮箱";
     }
 
 
@@ -323,13 +338,16 @@
        // var reN =/^\d{6,18}$/;
         var re = /^[a-zA-Z_]{6,18}$/;
         if(username.value==""){
-            document.getElementById('uname').value="请输入用户名";
+            document.getElementById('uname').value="";
+            document.getElementById('uname').placeholder="请输入用户名";
         }
         else if(username.value.length < 6 ||username.value.length > 18){
-            document.getElementById('uname').value="格式错误,长度应为6-18个字符";
+            document.getElementById('uname').value="";
+            document.getElementById('uname').placeholder="格式错误,长度应为6-18个字符";
         }
         else if(!re.test(username.value)){
-            document.getElementById('uname').value="格式错误,只能包含英文字母和下划线";
+            document.getElementById('uname').value="";
+            document.getElementById('uname').placeholder="格式错误,只能包含英文字母和下划线";
         }
         else {
             usernameflag2=callback();
@@ -337,7 +355,8 @@
             //console.log("2"+usernameflag);
             if(usernameflag2){
                 // console.log("3"+usernameflag2);
-                document.getElementById('uname').value ="用户名已存在";
+                document.getElementById('uname').value="";
+                document.getElementById('uname').placeholder ="用户名已存在";
              }else{
 
              }
@@ -347,6 +366,30 @@
 
      function YHMonfocu2(){
             document.getElementById('uname').value ="";
+            document.getElementById('uname').placeholder="请输入用户名";
+    }
+
+     function MMonblus2(){
+            var password=document.getElementById("upassword").value;
+            var re=/^.{60}/;
+            //var re =/$2a$10$^[A-Za-z0-9$./]{53}/;
+            //var re=/^\\$2[aby]\\$.{60}$/;
+            ///^(?=.*\d)(?=.*[a-zA-Z])[\da-zA-Z]{6,}$/;
+           // var reg=/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/;
+
+          if(password==""||!re.test(password)){
+              document.getElementById('upassword').value="";
+              document.getElementById('upassword').placeholder="输入密码格式不对";
+              }//setAttribute("placeholder",
+
+
+          //document.getElementById('upassword').value="";
+
+      }
+
+      function MMonfocu2(){
+        document.getElementById('upassword').value="";
+        document.getElementById('upassword').placeholder="请输入BCrypt加密6位数字后的密码";
     }
 
 
@@ -369,10 +412,12 @@
         var phone=document.getElementById("uphone");
         var re =/^1[3|4|5|7|8]\d{9}$/;
         if(phone.value==""){
-            document.getElementById('uphone').value="请输入联系电话";
+            document.getElementById('uphone').value="";
+            document.getElementById('uphone').placeholder="请输入联系电话";
         }
         else if(!re.test(phone.value)){
-            document.getElementById('uphone').value="电话格式输入错误";
+            document.getElementById('uphone').value="";
+            document.getElementById('uphone').placeholder="电话格式输入错误";
         }
         else {
             //document.getElementById('uphone').value ="";
@@ -380,16 +425,19 @@
     }
     function LXDHonfocu2(){
         document.getElementById('uphone').value ="";
+        document.getElementById('uphone').placeholder="请输入联系电话";
     }
 
      function DZYXonblus2(){
         var email=document.getElementById("uemail");
         var re= /[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}/;
         if(email.value==""){
-            document.getElementById('uemail').value="请输入电子邮箱";
+            document.getElementById('uemail').value="";
+            document.getElementById('uemail').placeholder="请输入电子邮箱";
         }
         else if(!re.test(email.value)){
-            document.getElementById("uemail").value="邮箱格式不正确";
+            document.getElementById('uemail').value="";
+            document.getElementById("uemail").placeholder="邮箱格式不正确";
         }
         else {
            // document.getElementById('email').value ="";
@@ -397,6 +445,7 @@
     }
     function DZYXonfocu2(){
         document.getElementById('uemail').value ="";
+        document.getElementById('uemail').placeholder="请输入电子邮箱";
     }
 </script>
 <script>
@@ -467,12 +516,19 @@
 			}
 			getListUserVo();
 
+			function nameIsExist(name){
+			   for(var i=0;i<p.length;i++){
+			      if(p[i].username==name) return true;
+			   }
+			   return false;
+			}
+
 			/**显示人员信息**/
 			function showPerson(){
 				//显示表格
 				var table1 = document.getElementById("table1");
 				table1.style = "margin: 1.25rem;";
-				var str = "<tr> <th>编号</th> <th>姓名</th> <th>密码</th> <th>性别</th> <th>邮箱地址</th> <th>电话号码</th>  <th>身份角色</th> <th>操作</th> </tr>";
+				var str = "<tr> <th>编号</th> <th>姓名</th> <th>密码</th> <th>性别</th> <th>邮箱地址</th> <th>电话号码</th>  <th>用户角色</th> <th>操作</th> </tr>";
 				for(var i=0;i<p.length;i++){
 					var a = p[i];
 					var role;
@@ -489,7 +545,18 @@
 				div2.style = "margin: 2.25rem;";
 			}
 			/**新增人员信息**/
+			function isAddEmpty(){
+			    var username= document.getElementById("username").value;
+				var password= document.getElementById("password").value;
+				var sex= document.getElementById("sex").value;
+				var email= document.getElementById("email").value;
+				var phone= document.getElementById("phone").value;
+				var role=$("input[type='radio']:checked").val();
+				if(username==""||password==""||sex==""||email==""||phone==""||role=="") return true;
+				return false;
+			}
 			function addPerson(){
+			    if(isAddEmpty()) return;
 				var field2 = document.getElementById("field2");
 				var a = {};//var a = new Array();
 				// var a = p[index-1];
@@ -559,7 +626,21 @@
 					}
 				}
 			}
+
+			function isUpdateEmpty(){
+			    var username = document.getElementById("uname").value;
+                var password = document.getElementById("upassword").value;
+                var sex = document.getElementById("usex").value;
+                var email = document.getElementById("uemail").value;
+                var phone = document.getElementById("uphone").value;
+                var role=$("input[type='radio']:checked").val();
+                if(username==""||password==""||sex==""||email==""||phone==""||role=="") return true;
+				return false;
+
+			}
+
 			function updatePerson(){
+			    if(isUpdateEmpty()) return;
 				var id = current_id;
 				//再根据id把表单中的value值存入对于的p[]i数组中
 				for(var i=0;i<p.length;i++){
@@ -581,7 +662,10 @@
 			}
 
 			function  onSave(){
-			    alert("test");
+			    if(!window.confirm("是否保存")) {
+			        window.location.href="/user/index";
+			        return;
+			    }
 			    //console.log(p);
 			   // console.log(JSON.stringify(p));
 			    $.ajax({

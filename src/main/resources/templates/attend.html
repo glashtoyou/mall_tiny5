@@ -152,13 +152,13 @@ color:black;" onclick="backBefore()" >&lt</a>
                 <input class="fileInput" id="photo" type="file" name="">
             </div>-->
             <label>
-                <span>名字:</span>
-                <input type="text" id="name" name="username" onfocus="YHMonfocu()" onblur="YHMonblus()" placeholder="请输入你的名字">
+                <span>用户名称:</span>
+                <input type="text" id="name" name="username" onfocus="YHMonfocu()" onblur="YHMonblus()" placeholder="请输入你的名字" required="required">
             </label>
 
             <label>
                 <span>赛事名称:</span>
-                <input type="text" id="activity" name="activity" onfocus="SSMonfocu()" onblur="SSMonblus()" placeholder="请输入赛事名称">
+                <input type="text" id="activity" name="activity" onfocus="SSMonfocu()" onblur="SSMonblus()" placeholder="请输入赛事名称" required="required">
             </label>
 
             <!-- <label>
@@ -202,13 +202,15 @@ color:black;" onclick="backBefore()" >&lt</a>
             if(usernameflag){
 
              }else{
-                 document.getElementById('name').value="用户名与当前用户不符";
+                 document.getElementById('name').value="";
+                 document.getElementById('name').placeholder="用户名与当前用户不符";
              }
 
          }
 
           function YHMonfocu(){
-            document.getElementById('name').value ="";
+                document.getElementById('name').value ="";
+                document.getElementById('name').placeholder="请输入你的名字";
           }
 
 
@@ -238,12 +240,14 @@ color:black;" onclick="backBefore()" >&lt</a>
             if(gnameflag){
 
              }else{
-                document.getElementById('activity').value="赛事不存在";
+                document.getElementById('activity').value="";
+                document.getElementById('activity').placeholder="赛事不存在";
              }
          }
 
           function SSMonfocu(){
             document.getElementById('activity').value ="";
+            document.getElementById('activity').placeholder="请输入赛事名称";
           }
         function backBefore(){
             window.history.go(-1);

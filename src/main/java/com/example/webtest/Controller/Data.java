@@ -63,7 +63,7 @@ public class Data {
 
     @GetMapping("/user/usernameIsExist/{username}")
     public Boolean usernameIsExist(@PathVariable String username,HttpSession session) {
-        return applyService.usernameIsExist(username, (Integer) session.getAttribute("uid"));
+        return applyService.usernameIsExist(username, (Integer) session.getAttribute("uid"),(Boolean) session.getAttribute("isManagement"));
     }
 
     @GetMapping("/user/gnameIsExist/{gname}")

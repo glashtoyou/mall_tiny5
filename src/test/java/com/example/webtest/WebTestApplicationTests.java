@@ -145,4 +145,8 @@ class WebTestApplicationTests {
 		System.out.println(historyService.getListHistoryVo().toString());
 	}
 
+	@Test
+	public void attendGamesTest(){
+		System.out.println(applyService.attendGameByUsernameAndActivity("jokemai","中文演讲比赛"));
+	}
 }

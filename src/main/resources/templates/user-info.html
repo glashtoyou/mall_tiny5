@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="../css/xinxi.css">
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="canonical" href="http://www.ityouknow.com/">
-  <link rel="alternate" type="application/rss+xml" title="纯洁的微笑" href="http://www.ityouknow.com/feed.xml">
+  <link rel="alternate" type="application/rss+xml"  href="http://www.ityouknow.com/feed.xml">
 
   <!-- Third-Party CSS -->
   <link rel="stylesheet" href="http://favorites.ren/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -79,7 +79,7 @@
     font-weight: 400;
     line-height: 38px;" href="/user/index" >&lt</a>
     <a id="site-header-brand" >
-      个人信息
+      个人中心
     </a>
   </div>
 
@@ -88,8 +88,8 @@
 </div>
 <div class="a">
   <div class="one">
-    <input type="text" id="one1" class="one1"   onfocus="MMonfocu();" onblur="MMonblus();" placeholder="         |请输入旧密码"><br>
-    <input type="text" id="one2" class="one2"  onfocus="MMonfocu2();" onblur="MMonblus2();" placeholder="         |请输入新密码"><br>
+    <input type="text" id="one1" class="one1"   onfocus="MMonfocu();" onblur="MMonblus();" placeholder="请输入旧密码" required="required"><br>
+    <input type="text" id="one2" class="one2"  onfocus="MMonfocu2();" onblur="MMonblus2();" placeholder="请输入新密码" required="required"><br>
     <input class="one3" type="button" onclick="updatePassword();" value="修改密码"/>
   </div>
   <!--<div class="two">
@@ -139,25 +139,28 @@
 <script>
       //console.log("o");
       function updatePassword(){
-      var oldPassword=document.getElementById("one1").value;
-      var newPassword=document.getElementById("one2").value;
-      var data={"oldPassword":oldPassword,"newPassword":newPassword};
-      data=JSON.stringify(data);
-      $.ajax({
-              url:"/user/updatePassword",
-              type:"post",
-              dataType:"json",
-              contentType:"application/json;charset=utf-8",
-              data:data,
-              success:function(result){
-                console.log(result);
-	            if(result) {
-	              document.getElementById("one2").value="密码修改成功";
-                }else{
-                  document.getElementById("one2").value="密码修改失败";
-              }
-            }
-       })
+          if(!(MMonblus()&&MMonblus2())) return;
+          var oldPassword=document.getElementById("one1").value;
+          var newPassword=document.getElementById("one2").value;
+          var data={"oldPassword":oldPassword,"newPassword":newPassword};
+          data=JSON.stringify(data);
+          $.ajax({
+                  url:"/user/updatePassword",
+                  type:"post",
+                  dataType:"json",
+                  contentType:"application/json;charset=utf-8",
+                  data:data,
+                  success:function(result){
+                    console.log(result);
+                    if(result) {
+                      document.getElementById("one2").value="";
+                      document.getElementById("one2").placeholder="密码修改成功";
+                    }else{
+                      document.getElementById("one2").value="";
+                      document.getElementById("one2").placeholder="密码修改失败";
+                  }
+                }
+           })
     }
 
         function MMonblus(){
@@ -167,22 +170,28 @@
          // var reg=/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/;
 
         if(password.value==""){
-        document.getElementById('one1').value="请输入密码";//setAttribute("placeholder",
+              document.getElementById('one1').value="";
+             document.getElementById('one1').placeholder="请输入密码";//setAttribute("placeholder",
         }
-          else if(password.value.length < 6){
-             document.getElementById('one1').value="格式错误,密码长度为6位";
+          else if(password.value.length !=6){
+             document.getElementById('one1').value="";
+             document.getElementById('one1').placeholder="格式错误,密码长度为6位";
          }
 
          else if(!re.test(password.value)){
-             document.getElementById('one1').value="格式错误,必须是6位数字";
+             document.getElementById('one1').value="";
+             document.getElementById('one1').placeholder="格式错误,必须是6位数字";
         }
          else {
+             return true;
         //document.getElementById('one1').value="";
         }
+        return false;
     }
 
     function MMonfocu(){
         document.getElementById('one1').value="";
+        document.getElementById('one1').placeholder="请输入密码";
     }
 
      function MMonblus2(){
@@ -192,22 +201,28 @@
          // var reg=/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/;
 
         if(password.value==""){
-        document.getElementById('one2').value="请输入密码";//setAttribute("placeholder",
+             document.getElementById('one2').value="";
+             document.getElementById('one2').placeholder="请输入新密码";//setAttribute("placeholder",
         }
           else if(password.value.length!=6){
-             document.getElementById('one2').value="格式错误,密码长度为6位";
+             document.getElementById('one2').value="";
+             document.getElementById('one2').placeholder="格式错误,密码长度为6位";
          }
 
          else if(!re.test(password.value)){
-             document.getElementById('one2').value="格式错误,必须是6位数字";
+             document.getElementById('one2').value="";
+             document.getElementById('one2').placeholder="格式错误,必须是6位数字";
         }
          else {
+             return true;
         //document.getElementById('one2').value="";
         }
+            return false;
     }
 
     function MMonfocu2(){
         document.getElementById('one2').value="";
+        document.getElementById('one2').placeholder="请输入新密码";
     }
 
     function logout(){

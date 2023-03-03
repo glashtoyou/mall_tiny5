@@ -23,7 +23,7 @@ public interface ApplyService {
 
     public List<Game> listAttendedGames(Integer uid);
 
-    public Boolean usernameIsExist(String username,Integer uid);
+    public Boolean usernameIsExist(String username,Integer uid,Boolean isManagement);
 
     public Boolean gnameIsExist(String gname);
 

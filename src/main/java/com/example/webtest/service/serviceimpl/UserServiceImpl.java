@@ -17,11 +17,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Transactional
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 

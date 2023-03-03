@@ -50,6 +50,8 @@ public class Redirect {
     @GetMapping("/user/index")
     public String index(HttpSession session){
         Object id=session.getAttribute("uid");
+        Boolean isManagement=false;
+        session.setAttribute("isManagement",isManagement);
         String jsonString = JSON.toJSONString(id);
         Integer uid = JSON.parseObject(jsonString,new TypeReference<Integer>(){});
        // System.out.println(uid.toString());
@@ -133,7 +135,9 @@ public class Redirect {
     }
 
     @GetMapping("/admin/user_manage")
-    public String userManage(){
+    public String userManage(HttpSession session){
+        Boolean isManagement=true;
+        session.setAttribute("isManagement",isManagement);
         return "user-manage";
     }
 
@@ -141,7 +145,10 @@ public class Redirect {
     public String gameManage(){return "game-manage";}
 
     @GetMapping("/admin/history_manage")
-    public String historyManage(){return "history-manage";}
+    public String historyManage(HttpSession session){
+        Boolean isManagement=true;
+        session.setAttribute("isManagement",isManagement);
+        return "history-manage";}
     //public <T> T getData(String key, TypeReference<T> typeReference) {
      //   Object data = get(key);	//默认是map
      //   String jsonString = JSON.toJSONString(data);

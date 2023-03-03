@@ -92,7 +92,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         Object obj=authentication.getPrincipal();
                         String jsonString = JSON.toJSONString(obj);
                         User user = JSON.parseObject(jsonString,new TypeReference<User>(){});
-                      //  System.out.println(user.toString());
+                       // System.out.println(user.toString());
                         request.getSession().setAttribute("uid",user.getUid());
 
                         //重定向

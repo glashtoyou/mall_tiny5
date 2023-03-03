@@ -32,11 +32,9 @@ public class GlobalCorsConfig {
         config.addAllowedMethod("PATCH");
         // 4）允许的头信息
         config.addAllowedHeader("*");
-
         //2.添加映射路径，我们拦截一切请求
         UrlBasedCorsConfigurationSource configSource = new UrlBasedCorsConfigurationSource();
         configSource.registerCorsConfiguration("/**", config);
-
         //3.返回新的CorsFilter.
         return new CorsFilter(configSource);
     }
