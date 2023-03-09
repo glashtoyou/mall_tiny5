@@ -3,6 +3,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UserInfo</title>
 
     <style type="text/css">
@@ -84,7 +86,7 @@
         }
         .Content-Main input[type="text"],.Content-Main input[type="activity"],.Content-Main textarea{
             height: 25px;
-            width: 50%;
+            width: 60%;
             line-height: 15px;
             padding: 5px 0px 5px 5px;
             margin-bottom: 16px;
@@ -119,8 +121,8 @@
             color: #585858;
             background: #60bfffba;
             position:relative;
-            left:350px;
-            top:45px;
+            display: block;
+            margin: 0 auto;
             align-self:center;
             font-family: Microsoft YaHei,"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 
@@ -131,21 +133,34 @@
             color:  #333;
             background-color:  #0099ff ;
         }
+      body{
+      font-family: Microsoft YaHei,"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      margin: 0;
+	  padding: 0;
+	  width:100%;
+	  height:auto;
+  }
     </style>
 </head>
-<body style="background-image:url(../img/form.jpg);height:100%;width:100%;">
+<body style="background-image:url(../img/form.jpg);height:auto%;width:100%;">
 <div class="Content-Main">
-    <div class="container">
-        <a style="margin-top:0px;
+
+
+    <form  action="/user/attendPro" method="post" class="form-userInfo" style="position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;">
+        <div class="container">
+            <a style="margin-top:0px;
     margin-bottom: 0;
     font-size: 38px;
     font-weight: 400;
     line-height: 38px;
 color:black;" onclick="backBefore()" >&lt</a>
 
-    </div>
-
-    <form  action="/user/attendPro" method="post" class="form-userInfo">
+        </div>
         <h1> 报名信息</h1>
         <p>
             <!--<div class="fileInputContainer">
@@ -252,6 +267,7 @@ color:black;" onclick="backBefore()" >&lt</a>
         function backBefore(){
             window.history.go(-1);
         }
+
 
 
 

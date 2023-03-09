@@ -3,6 +3,8 @@
 <html lang="en" >
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UserInfo</title>
 
     <style type="text/css">
@@ -89,7 +91,7 @@
         }
         .Content-Main input[type="text"],.Content-Main input[type="email"],.Content-Main textarea,.Content-Main input[type="number"]{
             height: 25px;
-            width: 70%;
+            width: 60%;
             line-height: 15px;
             padding: 5px 0px 5px 5px;
             margin-bottom: 16px;
@@ -123,7 +125,8 @@
             color: #585858;
             background: #60bfffba;
             position:relative;
-            left:350px;
+            display: block;
+            margin: 0 auto;
 
 
         }
@@ -131,11 +134,17 @@
             color:  #333;
             background-color:  #0099ff ;
         }
+
     </style>
 </head>
 <body style="background-image:url(../img/form.jpg);height:100%;width:100%;">
 <div class="Content-Main">
-    <form  action="/user/updateUser"  method="post" class="form-userInfo">
+    <form  action="/user/updateUser"  method="post" class="form-userInfo" style="position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;">
         <div class="container">
             <a style="margin-top:0px;
     margin-bottom: 0;

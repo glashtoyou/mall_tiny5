@@ -3,6 +3,8 @@
 <html lang="en" >
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UserInfo</title>
 
     <style type="text/css">
@@ -90,7 +92,7 @@
         }
         .Content-Main input[type="text"],.Content-Main input[type="email"],.Content-Main textarea,.Content-Main input[type="password"],.Content-Main input[type="number"]{
             height: 25px;
-            width: 70%;
+            width: 60%;
             line-height: 15px;
             padding: 5px 0px 5px 5px;
             margin-bottom: 16px;
@@ -124,7 +126,8 @@
             color: #585858;
             background: #60bfffba;
             position:relative;
-            left:350px;
+            display: block;
+            margin: 0 auto;
 
 
         }
@@ -132,11 +135,23 @@
             color:  #333;
             background-color:  #0099ff ;
         }
+        body{
+      font-family: Microsoft YaHei,"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      margin: 0;
+	  padding: 0;
+	  width:100%;
+	  height:auto;
+  }
     </style>
 </head>
 <body style="background-image:url(../img/form.jpg);">
 <div class="Content-Main">
-    <form  action="/registerPro"  method="post" class="form-userInfo">
+    <form  action="/registerPro"  method="post" class="form-userInfo" style="position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;">
         <h1>注册信息</h1>
         <!--<span class="text1">请在文本框中完善您的个人信息：</span>-->
         <p>
