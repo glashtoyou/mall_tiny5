@@ -134,6 +134,11 @@ public class ApplyServiceImpl implements ApplyService {
         QueryWrapper<Game>wrapper1=new QueryWrapper<>();
         wrapper1.eq("gname",gname);
         Integer gid=gameMapper.selectOne(wrapper1).getGid();
+        QueryWrapper<History>wrapper2=new QueryWrapper<>();
+        wrapper2.eq("uid",uid);
+        wrapper2.eq("gid",gid);
+        if(gameMapper.selectOne(wrapper1).getGend().before(new Timestamp(System.currentTimeMillis())))return false;
+        if (historyMapper.exists(wrapper2))return false;
         return inMatch(uid,gid);
     }
 
