@@ -150,3 +150,4 @@ class WebTestApplicationTests {
 		System.out.println(applyService.attendGameByUsernameAndActivity("jokemai","中文演讲比赛"));
 	}
 }
+
